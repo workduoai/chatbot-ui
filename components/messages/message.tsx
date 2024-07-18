@@ -317,7 +317,9 @@ export const Message: FC<MessageProps> = ({
                             return <div key={"key_" + i}>#{i}</div>
                           })}
                       </div>
-                      <MessageMarkdown content={local.content} />
+                      <MessageMarkdown
+                        content={local.content.replace(/\\n/g, "\n")}
+                      />
                     </>
                   )
                 } catch (e) {
