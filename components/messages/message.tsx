@@ -304,6 +304,27 @@ export const Message: FC<MessageProps> = ({
               onValueChange={setEditedMessage}
               maxRows={20}
             />
+          ) : message.role == "assistant" ? (
+            <>
+              {(() => {
+                try {
+                  let local = JSON.parse(message.content)
+                  return (
+                    <>
+                      <div className="flex flex-row gap-1">
+                        {local.notes &&
+                          local.notes.map(i => {
+                            return <div key={"key_" + i}>#{i}</div>
+                          })}
+                      </div>
+                      <MessageMarkdown content={local.content} />
+                    </>
+                  )
+                } catch (e) {
+                  return <MessageMarkdown content={message.content} />
+                }
+              })()}
+            </>
           ) : (
             <MessageMarkdown content={message.content} />
           )}

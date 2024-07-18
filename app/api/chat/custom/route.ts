@@ -36,14 +36,13 @@ export async function POST(request: Request) {
       apiKey: customModel.api_key || "",
       baseURL: customModel.base_url
     })
-    console.log("....")
     const response = await custom.chat.completions.create({
       model: chatSettings.model as ChatCompletionCreateParamsBase["model"],
       messages: messages as ChatCompletionCreateParamsBase["messages"],
       temperature: chatSettings.temperature
     })
 
-    return new Response(JSON.stringify(response), {
+    return new Response(response, {
       headers: {
         "content-type": "application/json"
       }

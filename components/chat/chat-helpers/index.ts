@@ -221,6 +221,20 @@ export const handleHostedChat = async (
   const apiEndpoint =
     provider === "custom" ? "/api/chat/custom" : `/api/chat/${provider}`
 
+  formattedMessages = formattedMessages.map(message => {
+    let local = message.content
+    try {
+      local = JSON.parse(local)
+      local = local.content
+    } catch (error) {
+      local = message.content
+    }
+    return {
+      ...message,
+      content: local
+    }
+  })
+
   const requestBody = {
     chatSettings: payload.chatSettings,
     messages: formattedMessages,
