@@ -313,6 +313,7 @@ export const Message: FC<MessageProps> = ({
                     <>
                       <div className="flex flex-row gap-1">
                         {local.notes &&
+                          // @ts-ignore
                           local.notes.map(i => {
                             return <div key={"key_" + i}>#{i}</div>
                           })}

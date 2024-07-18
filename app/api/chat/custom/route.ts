@@ -42,6 +42,7 @@ export async function POST(request: Request) {
       temperature: chatSettings.temperature
     })
 
+    // @ts-ignore
     return new Response(response, {
       headers: {
         "content-type": "application/json"
