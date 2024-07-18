@@ -327,7 +327,14 @@ export const Message: FC<MessageProps> = ({
                     </>
                   )
                 } catch (e) {
-                  return <MessageMarkdown content={message.content} />
+                  return (
+                    <MessageMarkdown
+                      content={
+                        "[Suggested by Duo Agent] " +
+                        message.content.replace(/\\n/g, "\n")
+                      }
+                    />
+                  )
                 }
               })()}
             </>
