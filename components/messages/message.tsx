@@ -318,7 +318,10 @@ export const Message: FC<MessageProps> = ({
                           })}
                       </div>
                       <MessageMarkdown
-                        content={local.content.replace(/\\n/g, "\n")}
+                        content={
+                          "[Suggested by Duo Agent] " +
+                          local.content.replace(/\\n/g, "\n")
+                        }
                       />
                     </>
                   )
