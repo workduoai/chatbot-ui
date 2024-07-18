@@ -6,6 +6,7 @@ import OpenAI from "openai"
 import { ChatCompletionCreateParamsBase } from "openai/resources/chat/completions.mjs"
 
 export const runtime: ServerRuntime = "edge"
+export const maxDuration = 300 // 5 minutes
 
 export async function POST(request: Request) {
   const json = await request.json()
@@ -35,7 +36,7 @@ export async function POST(request: Request) {
       apiKey: customModel.api_key || "",
       baseURL: customModel.base_url
     })
-
+    console.log("....")
     const response = await custom.chat.completions.create({
       model: chatSettings.model as ChatCompletionCreateParamsBase["model"],
       messages: messages as ChatCompletionCreateParamsBase["messages"],
